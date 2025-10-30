@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheraScape - AI Therapy Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome for voice icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Forest Audio CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forest-audio.css') }}">
+    <!-- Video Recommendations CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video-recommendations.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+    
+    <div class="app-container">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <a href="/" class="home-link">
+                            <h3 class="app-title">TheraScape</h3>
+                            <p class="app-subtitle">Your AI Therapy Assistant</p>
+                        </a>
+                        <div class="app-status">
+                            <span class="status-indicator online"></span>
+                            <span>Ready to help</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">show_chart</span>
+                            Mood Tracker
+                        </h5>
+                        <div class="mood-chart">
+                            <canvas id="moodChart"></canvas>
+                        </div>
+                        <div class="mood-legend">
+                            <div class="mood-item"><span class="mood-dot happy"></span> Happy (9-10)</div>
+                            <div class="mood-item"><span class="mood-dot neutral"></span> Neutral (6-7)</div>
+                            <div class="mood-item"><span class="mood-dot anxious"></span> Anxious/Stressed (4-5)</div>
+                            <div class="mood-item"><span class="mood-dot sad"></span> Sad (3)</div>
+                            <div class="mood-item"><span class="mood-dot angry"></span> Angry/Depressed (1-2)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">build</span>
+                            Therapeutic Tools
+                        </h5>
+                        <nav class="resource-nav">
+                            <a href="/coping-strategies" class="resource-link">
+                                <span class="material-icons">book</span>
+                                Coping Strategies
+                            </a>
+                            <a href="/breathing-exercises" class="resource-link">
+                                <span class="material-icons">favorite</span>
+                                Breathing Exercises
+                            </a>
+                            <a href="/mindfulness" class="resource-link">
+                                <span class="material-icons">psychology</span>
+                                Mindfulness Techniques
+                            </a>
+                            <a href="/crisis" class="resource-link">
+                                <span class="material-icons">phone</span>
+                                Crisis Helplines
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <div class="session-info">
+                            <span class="session-time-label">Session Timer</span>
+                            <div id="sessionTimer" class="session-timer">00:00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">psychology</span>
+                            AI Mood Detection
+                        </h5>
+                        <div class="mood-detection-display">
+                            <div class="current-mood-card">
+                                <div class="mood-icon-large" id="currentMoodIcon">🤔</div>
+                                <div class="mood-details">
+                                    <span class="mood-label">Current Mood</span>
+                                    <span class="mood-name" id="currentMoodName">Analyzing...</span>
+                                    <span class="mood-confidence" id="moodConfidence">Confidence: --</span>
+                                </div>
+                            </div>
+                            <div class="mood-history">
+                                <h6>Recent Mood Pattern</h6>
+                                <div class="mood-timeline" id="moodTimeline">
+                                    <!-- Recent moods will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Recommendations Panel -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-video-panel" id="sidebarVideoPanel" style="display: none;">
+                            <div class="sidebar-video-header">
+                                <span class="material-icons">video_library</span>
+                                <span>Recommended Videos</span>
+                            </div>
+                            <div class="sidebar-video-list" id="sidebarVideoList">
+                                <!-- Video recommendations will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Session Status & Logout Section -->
+                    <div class="sidebar-section logout-section">
+                        {% if user %}
+                            <div class="session-status">
+                                {% if user.mode == 'demo' %}
+                                    <span class="status-badge demo">
+                                        <span class="material-icons">visibility</span>
+                                        Demo Mode - Not Saved
+                                    </span>
+                                {% else %}
+                                    <span class="status-badge authenticated">
+                                        <span class="material-icons">save</span>
+                                        Session Saved
+                                    </span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <button id="logoutBtn" class="logout-btn" title="Logout">
+                            <span class="material-icons">logout</span>
+                            <span class="logout-text">
+                                {% if user and user.mode == 'demo' %}
+                                    Exit Demo
+                                {% else %}
+                                    Logout
+                                {% endif %}
+                            </span>
+                        </button>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p>
+                            TheraScape is not a replacement for professional mental health treatment. 
+                            If you're experiencing a crisis, please contact a mental health professional or helpline.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Chat Area -->
+            <main class="chat-area">
+                <header class="chat-header">
+                    <div class="chat-title">
+                        <span class="material-icons">chat</span>
+                        <span>Therapy Session</span>
+                    </div>
+                    
+                    <div class="header-controls">
+                        <!-- Voice/Text Toggle -->
+                        <div class="chat-mode-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="chatModeToggle">
+                                <span class="toggle-slider">
+                                    <span class="toggle-text text">Text</span>
+                                    <span class="toggle-text voice">Voice</span>
+                                </span>
+                            </label>
+                            <div class="voice-status" id="voiceStatus" style="display: none;">
+                                <span class="material-icons">volume_up</span>
+                                <span>Voice mode active</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="chat-container">
+                    <!-- Robot Header -->
+                    <div class="chat-robot-header" id="chatRobotHeader">
+                        <div class="robot-avatar-large">
+                            <video width="80" height="80" autoplay loop muted playsinline>
+                                <source src="/static/images/robot.webm" type="video/webm">
+                                <!-- Fallback SVG for browsers that don't support WebM -->
+                                <svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="8" y="12" width="24" height="20" rx="4" fill="#6C63FF" stroke="#4A47A3" stroke-width="2"/>
+                                    <line x1="20" y1="8" x2="20" y2="12" stroke="#4A47A3" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="20" cy="6" r="2" fill="#FF6B6B"/>
+                                    <circle cx="15" cy="18" r="2" fill="#FFFFFF"/>
+                                    <circle cx="25" cy="18" r="2" fill="#FFFFFF"/>
+                                    <circle cx="15" cy="18" r="1" fill="#4A47A3"/>
+                                    <circle cx="25" cy="18" r="1" fill="#4A47A3"/>
+                                    <rect x="17" y="24" width="6" height="3" rx="1.5" fill="#4A47A3"/>
+                                    <rect x="12" y="32" width="16" height="8" rx="2" fill="#8B7CF6" stroke="#6C63FF" stroke-width="1"/>
+                                    <rect x="4" y="34" width="8" height="3" rx="1.5" fill="#A78BFA"/>
+                                    <rect x="28" y="34" width="8" height="3" rx="1.5" fill="#A78BFA"/>
+                                    <circle cx="20" cy="36" r="1" fill="#FFFFFF" opacity="0.7"/>
+                                    <rect x="18" y="38" width="4" height="1" rx="0.5" fill="#FFFFFF" opacity="0.7"/>
+                                </svg>
+                            </video>
+                        </div>
+                        <div class="robot-greeting">
+                            <h3 class="robot-name">TheraScape Assistant</h3>
+                            <p class="robot-status" id="robotStatus">
+                                {% if user and user.name %}
+                                    Welcome {{ user.name }}! 
+                                    {% if user.mode == 'demo' %}
+                                        (Demo Mode - Session not saved)
+                                    {% else %}
+                                        Ready to help you today.
+                                    {% endif %}
+                                {% else %}
+                                    Ready to help you feel better
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="robot-mood-indicator" id="robotMoodIndicator">
+                            <span class="mood-icon">😊</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Welcome message will be inserted dynamically by JS -->
+                    </div>
+                    
+                    <!-- Input area -->
+                    <div class="chat-input">
+                        <!-- Text input form -->
+                        <div id="textInputArea" class="text-input-area">
+                            <form id="chatForm" class="chat-form">
+                                <button type="button" class="emoji-btn">
+                                    <span class="material-icons">sentiment_satisfied</span>
+                                </button>
+                                <div class="input-wrapper">
+                                    <input type="text" id="userMessage" class="message-input" placeholder="Type your message here..." required>
+                                </div>
+                                <button type="submit" class="send-btn">
+                                    <span class="material-icons">send</span>
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Voice input area -->
+                        <div id="voiceInputArea" class="voice-input-area" style="display: none;">
+                            <div id="voiceControls" class="voice-controls">
+                                <button id="recordBtn" class="voice-btn">
+                                    <div class="mic-icon-wrapper">
+                                        <div class="mic-icon">
+                                            <div class="mic-top"></div>
+                                            <div class="mic-body"></div>
+                                            <div class="mic-base"></div>
+                                        </div>
+                                        <div class="mic-outline"></div>
+                                        <div class="mic-ripples">
+                                            <div class="mic-ripple mic-ripple-1"></div>
+                                            <div class="mic-ripple mic-ripple-2"></div>
+                                            <div class="mic-ripple mic-ripple-3"></div>
+                                        </div>
+                                        <div class="sound-waves">
+                                            <div class="sound-wave"></div>
+                                            <div class="sound-wave"></div>
+                                            <div class="sound-wave"></div>
+                                            <div class="sound-wave"></div>
+                                            <div class="sound-wave"></div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-microphone mic-icon-fa"></i>
+                                </button>
+                                <div class="voice-status-text">Click and hold to record your message</div>
+                            </div>
+                        </div>
+                        
+                        <div class="typing-indicator" id="typingIndicator">
+                            <div class="typing-avatar">
+                                <video width="24" height="24" autoplay loop muted playsinline>
+                                    <source src="/static/images/robot.webm" type="video/webm">
+                                    <!-- Fallback SVG for browsers that don't support WebM -->
+                                    <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="8" y="12" width="24" height="20" rx="4" fill="#6C63FF" stroke="#4A47A3" stroke-width="2"/>
+                                        <line x1="20" y1="8" x2="20" y2="12" stroke="#4A47A3" stroke-width="2" stroke-linecap="round"/>
+                                        <circle cx="20" cy="6" r="2" fill="#FF6B6B"/>
+                                        <circle cx="15" cy="18" r="2" fill="#FFFFFF"/>
+                                        <circle cx="25" cy="18" r="2" fill="#FFFFFF"/>
+                                        <circle cx="15" cy="18" r="1" fill="#4A47A3"/>
+                                        <circle cx="25" cy="18" r="1" fill="#4A47A3"/>
+                                        <rect x="17" y="24" width="6" height="3" rx="1.5" fill="#4A47A3"/>
+                                        <rect x="12" y="32" width="16" height="8" rx="2" fill="#8B7CF6" stroke="#6C63FF" stroke-width="1"/>
+                                        <rect x="4" y="34" width="8" height="3" rx="1.5" fill="#A78BFA"/>
+                                        <rect x="28" y="34" width="8" height="3" rx="1.5" fill="#A78BFA"/>
+                                        <circle cx="20" cy="36" r="1" fill="#FFFFFF" opacity="0.7"/>
+                                        <rect x="18" y="38" width="4" height="1" rx="0.5" fill="#FFFFFF" opacity="0.7"/>
+                                    </svg>
+                                </video>
+                            </div>
+                            <div class="typing-dots">
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Name Modal -->
+    <div id="nameModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Welcome to TheraScape!</h2>
+            <p>Please enter your name so I can greet you personally:</p>
+            <form id="nameForm">
+                <input type="text" id="userNameInput" class="message-input" placeholder="Your name" required>
+                <button type="submit" class="btn-primary" style="margin-top:16px;">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat Continuation Modal -->
+    <div id="chatContinuationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome back!</h2>
+                <span class="material-icons">chat</span>
+            </div>
+            <div class="modal-body">
+                <p>We found a previous conversation from your last session.</p>
+                <p>Would you like to continue where you left off, or start fresh?</p>
+                
+                <div class="chat-options">
+                    <div class="option-card">
+                        <span class="material-icons option-icon">history</span>
+                        <h4>Continue Previous Chat</h4>
+                        <p>Resume your conversation and maintain your therapeutic progress</p>
+                        <button id="continueChat" class="btn-primary">
+                            <span class="material-icons">play_arrow</span>
+                            Continue Chat
+                        </button>
+                    </div>
+                    
+                    <div class="option-card">
+                        <span class="material-icons option-icon">refresh</span>
+                        <h4>Start Fresh</h4>
+                        <p>Begin a new conversation (previous chat will be permanently deleted)</p>
+                        <button id="startFresh" class="btn-secondary">
+                            <span class="material-icons">refresh</span>
+                            Start Fresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <small style="color: #718096;">
+                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">info</span>
+                        This choice only applies to authenticated users. Demo sessions aren't saved.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Pass user context via data attributes -->
+    <div id="userContextData" 
+         data-user-name="{% if user %}{{ user.name }}{% endif %}"
+         data-user-mode="{% if user %}{{ user.mode }}{% else %}unknown{% endif %}"
+         data-save-session="{% if user %}{{ user.save_session|lower }}{% else %}false{% endif %}"
+         style="display: none;"></div>
+    
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 id="videoModalTitle" class="video-modal-title">Therapeutic Video</h3>
+                <button id="videoModalClose" class="video-modal-close">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="video-modal-player">
+                <iframe id="videoModalIframe" class="video-iframe" src="" allowfullscreen></iframe>
+            </div>
+            <div class="video-modal-info">
+                <p id="videoModalDescription" class="video-modal-description"></p>
+                <div id="videoModalTags" class="video-modal-tags"></div>
+                <div id="videoModalFeatures" class="video-modal-features">
+                    <h4>Interactive Features</h4>
+                    <ul id="videoModalFeaturesList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Initialize user context for JavaScript -->
+    <script>
+        // Read user context from data attributes
+        const contextEl = document.getElementById('userContextData');
+        window.userContext = {
+            name: contextEl.dataset.userName || null,
+            mode: contextEl.dataset.userMode || "unknown",
+            saveSession: contextEl.dataset.saveSession === "true"
+        };
+        console.log('🔧 User context initialized:', window.userContext);
+        console.log('🔧 Data attributes:', {
+            userName: contextEl.dataset.userName,
+            userMode: contextEl.dataset.userMode,
+            saveSession: contextEl.dataset.saveSession
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Video Recommendations JS -->
+    <script src="{{ url_for('static', filename='js/video-recommendations.js') }}"></script>
+    <!-- Forest Audio JS -->
+    <script src="{{ url_for('static', filename='js/forest-audio.js') }}"></script>
+</body>
+</html>

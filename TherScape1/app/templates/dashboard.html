@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TheraScape</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" integrity="sha256-vxWLYuIGRBuR4rCXbCoHYTkGsVUOU7MZ/7cChEYKOjY=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #81c784;
+            --accent-color: #4caf50;
+            --background-color: #f8f9fa;
+            --surface-color: #ffffff;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+            min-height: 100vh;
+        }
+
+        /* Crisis Banner */
+        .crisis-banner {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .crisis-banner h3 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+
+        .emergency-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: var(--spacing-md);
+        }
+
+        .emergency-btn:hover {
+            background: white;
+            color: #d32f2f;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface-color);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .user-info h2 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .user-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .dashboard-card {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card-icon {
+            padding: var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Mood Card */
+        .mood-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .mood-indicator {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #4caf50, #81c784);
+        }
+
+        .mood-details h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .mood-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Goals List */
+        .goals-list {
+            list-style: none;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            background: var(--background-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .goal-icon {
+            color: var(--primary-color);
+        }
+
+        /* Quick Actions Grid */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .action-grid .action-btn {
+            padding: var(--spacing-lg);
+            flex-direction: column;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        }
+
+        .action-grid .action-btn span:first-child {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: var(--spacing-md);
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .dashboard-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for mood indicators */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mood-indicator {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Crisis Support Banner -->
+        <div class="crisis-banner" id="crisisBanner" style="display: none;">
+            <h3><span class="material-icons" style="vertical-align: middle; margin-right: 8px;">warning</span>We're Here for You</h3>
+            <p>If you're experiencing thoughts of self-harm or suicide, please reach out for immediate support.</p>
+            <button class="emergency-btn" onclick="showEmergencyContacts()">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">call</span>
+                Emergency Support
+            </button>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="user-welcome">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-info">
+                    <h2 id="userName">Welcome back!</h2>
+                    <p id="lastSession">Let's continue your journey to wellness</p>
+                </div>
+            </div>
+            <div class="dashboard-nav">
+                <a href="/chat" class="nav-btn">
+                    <span class="material-icons">chat</span>
+                    Chat
+                </a>
+                <a href="/breathing_exercises" class="nav-btn">
+                    <span class="material-icons">air</span>
+                    Breathe
+                </a>
+                <a href="/mindfulness" class="nav-btn">
+                    <span class="material-icons">self_improvement</span>
+                    Mindfulness
+                </a>
+                <button class="nav-btn" onclick="logout()">
+                    <span class="material-icons">logout</span>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Current Mood Card -->
+            <div class="dashboard-card mood-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="material-icons">mood</span>
+                    </div>
+                    <h3 class="card-title">Current Mood</h3>
+                </div>
+                <div class="mood-status" id="currentMood">
+                    <div class="mood-indicator mood-happy">😊</div>
+                    <div class="mood-details">
+                        <h3>Checking mood...</h3>
+                        <p>Loading your latest mood analysis</p>
+                    </div>
+                </div>
+                <button class="action-btn" onclick="updateMood()">
+                    <span class="material-icons">psychology</span>
+                    Update Mood
+                </button>
+            </div>
+
+            <!-- Mood Analytics Card -->
+            <div class="dashboard-card analytics-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="material-icons">analytics</span>
+                    </div>
+                    <h3 class="card-title">Mood Trends</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="moodChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Therapeutic Goals Card -->
+            <div class="dashboard-card goals-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="material-icons">flag</span>
+                    </div>
+                    <h3 class="card-title">Today's Goals</h3>
+                </div>
+                <ul class="goals-list" id="goalsList">
+                    <li class="goal-item">
+                        <div class="goal-icon">
+                            <span class="material-icons" style="font-size: 1rem;">schedule</span>
+                        </div>
+                        <span>Loading your therapeutic goals...</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Actions Card -->
+            <div class="dashboard-card quick-actions">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="material-icons">flash_on</span>
+                    </div>
+                    <h3 class="card-title">Quick Actions</h3>
+                </div>
+                <div class="action-grid">
+                    <a href="/chat" class="action-btn">
+                        <span class="material-icons">psychology</span>
+                        <span>AI Therapy</span>
+                    </a>
+                    <a href="/breathing_exercises" class="action-btn">
+                        <span class="material-icons">air</span>
+                        <span>Breathing</span>
+                    </a>
+                    <a href="/mindfulness" class="action-btn">
+                        <span class="material-icons">self_improvement</span>
+                        <span>Meditation</span>
+                    </a>
+                    <a href="/crisis" class="action-btn">
+                        <span class="material-icons">support</span>
+                        <span>Crisis Help</span>
+                    </a>
+                    <button class="action-btn" onclick="openMoodTracker()">
+                        <span class="material-icons">timeline</span>
+                        <span>Track Mood</span>
+                    </button>
+                    <button class="action-btn" onclick="openRecommendations()">
+                        <span class="material-icons">recommend</span>
+                        <span>Videos</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mood Tracking Modal -->
+    <div id="moodModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; max-width: 400px; width: 90%;">
+            <h3>How are you feeling right now?</h3>
+            <div style="margin: 20px 0;">
+                <label>Describe your mood:</label>
+                <textarea id="moodText" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #e0e0e0; margin-top: 10px;" rows="3" placeholder="Tell me about your current emotional state..."></textarea>
+            </div>
+            <div style="margin: 20px 0;">
+                <label>Intensity (1-10):</label>
+                <input type="range" id="moodIntensity" min="1" max="10" value="5" style="width: 100%; margin-top: 10px;">
+                <div style="text-align: center; margin-top: 5px;">
+                    <span id="intensityValue">5</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="analyzeMood()" style="flex: 1; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Analyze Mood
+                </button>
+                <button onclick="closeMoodModal()" style="flex: 1; padding: 12px; background: #ccc; color: black; border: none; border-radius: 8px; cursor: pointer;">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let moodChart = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserData();
+            initializeMoodChart();
+            loadMoodHistory();
+            loadTherapeuticGoals();
+            
+            // Update intensity display
+            document.getElementById('moodIntensity').addEventListener('input', function() {
+                document.getElementById('intensityValue').textContent = this.value;
+            });
+        });
+
+        async function loadUserData() {
+            try {
+                const response = await fetch('/api/user-profile');
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    document.getElementById('userName').textContent = `Welcome back, ${data.user.fullName || data.user.username}!`;
+                    document.getElementById('userAvatar').textContent = (data.user.fullName || data.user.username)[0].toUpperCase();
+                    
+                    if (data.lastSession) {
+                        document.getElementById('lastSession').textContent = `Last session: ${new Date(data.lastSession).toLocaleDateString()}`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+            }
+        }
+
+        function initializeMoodChart() {
+            const ctx = document.getElementById('moodChart').getContext('2d');
+            moodChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Mood Intensity',
+                        data: [],
+                        borderColor: 'rgb(46, 125, 50)',
+                        backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        async function loadMoodHistory() {
+            try {
+                const response = await fetch('/api/mood-history');
+                const data = await response.json();
+                
+                if (data.success && data.history.length > 0) {
+                    // Update current mood
+                    const latestMood = data.history[0];
+                    updateCurrentMoodDisplay(latestMood);
+                    
+                    // Update chart
+                    const labels = data.history.slice(0, 7).reverse().map(entry => 
+                        new Date(entry.timestamp).toLocaleDateString());
+                    const intensities = data.history.slice(0, 7).reverse().map(entry => entry.intensity);
+                    
+                    moodChart.data.labels = labels;
+                    moodChart.data.datasets[0].data = intensities;
+                    moodChart.update();
+                    
+                    // Check for crisis risk
+                    if (latestMood.crisisRisk) {
+                        document.getElementById('crisisBanner').style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading mood history:', error);
+            }
+        }
+
+        function updateCurrentMoodDisplay(moodData) {
+            const moodContainer = document.getElementById('currentMood');
+            const moodEmojis = {
+                happy: '😊',
+                sad: '😢',
+                anxious: '😰',
+                angry: '😠',
+                stressed: '😤',
+                calm: '😌',
+                neutral: '😐'
+            };
+            
+            moodContainer.innerHTML = `
+                <div class="mood-indicator mood-${moodData.primaryMood}">
+                    ${moodEmojis[moodData.primaryMood] || '😐'}
+                </div>
+                <div class="mood-details">
+                    <h3>${moodData.primaryMood}</h3>
+                    <p>Intensity: ${moodData.intensity}/10 • Confidence: ${Math.round(moodData.confidenceScore * 100)}%</p>
+                </div>
+            `;
+        }
+
+        async function loadTherapeuticGoals() {
+            try {
+                const response = await fetch('/api/therapeutic-goals');
+                const data = await response.json();
+                
+                if (data.success && data.goals.length > 0) {
+                    const goalsList = document.getElementById('goalsList');
+                    goalsList.innerHTML = data.goals.map(goal => `
+                        <li class="goal-item">
+                            <div class="goal-icon">
+                                <span class="material-icons" style="font-size: 1rem;">flag</span>
+                            </div>
+                            <span>${goal}</span>
+                        </li>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading therapeutic goals:', error);
+            }
+        }
+
+        function openMoodTracker() {
+            document.getElementById('moodModal').style.display = 'block';
+        }
+
+        function closeMoodModal() {
+            document.getElementById('moodModal').style.display = 'none';
+        }
+
+        async function analyzeMood() {
+            const text = document.getElementById('moodText').value;
+            const intensity = parseInt(document.getElementById('moodIntensity').value);
+            
+            if (!text.trim()) {
+                alert('Please describe how you\'re feeling');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/analyze-mood', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, intensity, preferences: {} })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    closeMoodModal();
+                    loadMoodHistory(); // Refresh the dashboard
+                    loadTherapeuticGoals();
+                    
+                    // Show success message
+                    alert('Mood analysis completed! Your dashboard has been updated.');
+                } else {
+                    alert('Error analyzing mood: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error connecting to server');
+            }
+        }
+
+        function updateMood() {
+            openMoodTracker();
+        }
+
+        function openRecommendations() {
+            window.open('/videos', '_blank');
+        }
+
+        function showEmergencyContacts() {
+            alert('Emergency Contacts:\n\nNational Suicide Prevention Lifeline: 988\nCrisis Text Line: Text HOME to 741741\nEmergency Services: 911\n\nYou are not alone. Help is available.');
+        }
+
+        async function logout() {
+            try {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.href = '/auth';
+            } catch (error) {
+                window.location.href = '/auth';
+            }
+        }
+    </script>
+</body>
+</html>

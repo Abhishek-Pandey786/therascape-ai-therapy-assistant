@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfulness Techniques | TheraScape</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material UI CSS -->
+    <link href="https://unpkg.com/@material/web@1.0.0/material-web.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Shared Therapeutic Tools CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/therapeutic_tools.css') }}">
+    <!-- Mindfulness CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mindfulness.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+    
+    <div class="app-container">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <a href="/" class="home-link">
+                            <h3 class="app-title">TheraScape</h3>
+                            <p class="app-subtitle">Your AI Therapy Assistant</p>
+                        </a>
+                        <div class="app-status">
+                            <span class="status-indicator online"></span>
+                            <span>Ready to help</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">build</span>
+                            Therapeutic Tools
+                        </h5>
+                        <nav class="resource-nav">
+                            <a href="/coping-strategies" class="resource-link">
+                                <span class="material-icons">book</span>
+                                Coping Strategies
+                            </a>
+                            <a href="/breathing-exercises" class="resource-link">
+                                <span class="material-icons">favorite</span>
+                                Breathing Exercises
+                            </a>
+                            <a href="/mindfulness" class="resource-link active">
+                                <span class="material-icons">psychology</span>
+                                Mindfulness Techniques
+                            </a>
+                            <a href="/crisis" class="resource-link">
+                                <span class="material-icons">phone</span>
+                                Crisis Helplines
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p>
+                            TheraScape is not a replacement for professional mental health treatment. 
+                            If you're experiencing a crisis, please contact a mental health professional or helpline.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Content Area -->
+            <main class="content-area">
+                <header class="content-header">
+                    <h1>
+                        <span class="material-icons">psychology</span>
+                        Mindfulness Techniques
+                    </h1>
+                    <p>Practice present-moment awareness and cultivate inner peace</p>
+                </header>
+                
+                <div class="content-body">
+                    <div class="mindfulness-intro">
+                        <p>Mindfulness is the practice of paying attention to the present moment with openness, curiosity, and acceptance. It can help reduce stress, improve focus, and enhance overall well-being.</p>
+                        <p>Explore these mindfulness techniques and find what resonates with you.</p>
+                    </div>
+                    
+                    <section class="technique-section">
+                        <h2>Body Scan Meditation</h2>
+                        <p class="technique-description">A guided meditation that helps you become aware of physical sensations throughout your body, promoting relaxation and body awareness.</p>
+                        
+                        <div class="technique-card">
+                            <div class="technique-card-header">
+                                <h3>How to Practice Body Scan</h3>
+                            </div>
+                            <div class="technique-card-body">
+                                <ol>
+                                    <li><strong>Find a comfortable position</strong> lying down or sitting with your back straight.</li>
+                                    <li><strong>Close your eyes</strong> and take a few deep breaths to center yourself.</li>
+                                    <li><strong>Start at your toes</strong> and slowly move your attention up through your body.</li>
+                                    <li><strong>Notice sensations</strong> in each part without trying to change them.</li>
+                                    <li><strong>Continue scanning</strong> through your legs, torso, arms, and head.</li>
+                                    <li><strong>Practice for 10-20 minutes</strong> daily for best results.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>If your mind wanders, gently bring your attention back to the body part you're focusing on.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="technique-section">
+                        <h2>Mindful Walking</h2>
+                        <p class="technique-description">Transform your daily walks into a mindfulness practice by paying attention to each step and your surroundings.</p>
+                        
+                        <div class="technique-card">
+                            <div class="technique-card-header">
+                                <h3>How to Practice Mindful Walking</h3>
+                            </div>
+                            <div class="technique-card-body">
+                                <ol>
+                                    <li><strong>Choose a quiet path</strong> where you can walk slowly and safely.</li>
+                                    <li><strong>Stand still first</strong> and feel your feet on the ground.</li>
+                                    <li><strong>Take slow, deliberate steps</strong>, paying attention to the movement.</li>
+                                    <li><strong>Notice the sensations</strong> in your feet and legs as you walk.</li>
+                                    <li><strong>Observe your surroundings</strong> - sights, sounds, smells.</li>
+                                    <li><strong>When your mind wanders</strong>, gently return to the sensation of walking.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Start with just 5-10 minutes of mindful walking and gradually increase the duration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="technique-section">
+                        <h2>Loving-Kindness Meditation</h2>
+                        <p class="technique-description">A practice that cultivates compassion and goodwill toward yourself and others through repeated phrases of well-wishing.</p>
+                        
+                        <div class="technique-card">
+                            <div class="technique-card-header">
+                                <h3>How to Practice Loving-Kindness</h3>
+                            </div>
+                            <div class="technique-card-body">
+                                <ol>
+                                    <li><strong>Find a comfortable position</strong> and close your eyes.</li>
+                                    <li><strong>Start with yourself</strong>, silently repeating: "May I be happy, may I be healthy, may I be at peace."</li>
+                                    <li><strong>Think of a loved one</strong> and direct the same wishes toward them.</li>
+                                    <li><strong>Think of a neutral person</strong> (like a neighbor or colleague) and extend the same wishes.</li>
+                                    <li><strong>Think of someone difficult</strong> and try to extend the same compassion.</li>
+                                    <li><strong>Finally, extend to all beings</strong> everywhere.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>If you find it difficult to extend kindness to someone, start with yourself and gradually work outward.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="technique-section">
+                        <h2>Mindful Eating</h2>
+                        <p class="technique-description">Bring awareness to the experience of eating, helping you develop a healthier relationship with food.</p>
+                        
+                        <div class="technique-card">
+                            <div class="technique-card-header">
+                                <h3>How to Practice Mindful Eating</h3>
+                            </div>
+                            <div class="technique-card-body">
+                                <ol>
+                                    <li><strong>Before eating</strong>, take a moment to appreciate your food.</li>
+                                    <li><strong>Notice the colors, smells, and textures</strong> of your food.</li>
+                                    <li><strong>Take small bites</strong> and chew slowly, noticing the flavors.</li>
+                                    <li><strong>Pay attention to hunger and fullness</strong> cues.</li>
+                                    <li><strong>Eat without distractions</strong> - no TV, phone, or reading.</li>
+                                    <li><strong>Express gratitude</strong> for the nourishment you're receiving.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Start with one meal a day and gradually incorporate mindful eating into more meals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="technique-section">
+                        <h2>Mindful Journaling</h2>
+                        <p class="technique-description">Combine mindfulness with writing to process thoughts and emotions while staying present.</p>
+                        
+                        <div class="technique-card">
+                            <div class="technique-card-header">
+                                <h3>How to Practice Mindful Journaling</h3>
+                            </div>
+                            <div class="technique-card-body">
+                                <ol>
+                                    <li><strong>Set aside 10-15 minutes</strong> in a quiet space.</li>
+                                    <li><strong>Take a few deep breaths</strong> to center yourself.</li>
+                                    <li><strong>Write without judgment</strong> - let thoughts flow naturally.</li>
+                                    <li><strong>Focus on the present moment</strong> - what you're thinking and feeling now.</li>
+                                    <li><strong>Use prompts like:</strong> "Right now I feel..." or "Today I noticed..."</li>
+                                    <li><strong>End with gratitude</strong> - write about something you're thankful for.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Don't worry about grammar or spelling - this is for your eyes only and about the process, not perfection.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="back-to-chat">
+                        <a href="/chat" class="btn-primary">
+                            <span class="material-icons">chat</span>
+                            Back to Chat
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+                                    <li><strong>Begin by directing loving-kindness towards yourself</strong>. Repeat silently:
+                                        <ul>
+                                            <li>"May I be happy. May I be well. May I be safe. May I be peaceful and at ease."</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Next, bring to mind someone you care deeply about</strong> and direct the same phrases towards them:
+                                        <ul>
+                                            <li>"May you be happy. May you be well. May you be safe. May you be peaceful and at ease."</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Then, think of an acquaintance</strong> and repeat the same phrases.</li>
+                                    <li><strong>Next, think of someone with whom you have difficulty</strong> and direct the phrases towards them.</li>
+                                    <li><strong>Finally, direct loving-kindness towards all beings</strong>:
+                                        <ul>
+                                            <li>"May all beings be happy. May all beings be well. May all beings be safe. May all beings be peaceful and at ease."</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <div class="practice-tip">
+                                    <h4><i class="fas fa-lightbulb text-warning"></i> Tip</h4>
+                                    <p>If you find it difficult to generate feelings of loving-kindness, try recalling a time when you felt loved or when you genuinely cared for someone else.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-section">
+                        <h2>Mindful Walking</h2>
+                        <p class="practice-description">This practice combines physical activity with mindfulness, helping you stay present while moving your body.</p>
+                        
+                        <div class="practice-card">
+                            <div class="practice-card-header">
+                                <h3>How to Practice Mindful Walking</h3>
+                            </div>
+                            <div class="practice-card-body">
+                                <ol>
+                                    <li><strong>Find a quiet place</strong> where you can walk back and forth for 10-15 steps, or choose a path through a garden or park.</li>
+                                    <li><strong>Stand at one end</strong>, with your feet firmly planted on the ground.</li>
+                                    <li><strong>Become aware of your body</strong>, feeling the weight of your body on the soles of your feet.</li>
+                                    <li><strong>Begin to walk slowly</strong>, being aware of the lifting, moving, and placing of each foot.</li>
+                                    <li><strong>Notice the sensations</strong> in your feet and legs—heaviness, lightness, pressure, tingling.</li>
+                                    <li><strong>When you reach the end of your path</strong>, pause, breathe, and turn around mindfully.</li>
+                                    <li><strong>Continue walking back and forth</strong>, maintaining awareness of your movements.</li>
+                                    <li><strong>If your mind wanders</strong>, gently bring your attention back to the sensations of walking.</li>
+                                </ol>
+                                <div class="practice-tip">
+                                    <h4><i class="fas fa-lightbulb text-warning"></i> Application</h4>
+                                    <p>You can practice mindful walking anywhere—in nature, in the city, or even walking from room to room in your home.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="back-to-chat">
+                        <a href="/chat" class="btn btn-primary"><i class="fas fa-arrow-left me-2"></i>Back to Chat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

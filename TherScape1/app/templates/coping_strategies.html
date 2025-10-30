@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coping Strategies | TheraScape</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material UI CSS -->
+    <link href="https://unpkg.com/@material/web@1.0.0/material-web.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Shared Therapeutic Tools CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/therapeutic_tools.css') }}">
+    <!-- Coping Strategies CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/coping.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+    
+    <div class="app-container">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <a href="/" class="home-link">
+                            <h3 class="app-title">TheraScape</h3>
+                            <p class="app-subtitle">Your AI Therapy Assistant</p>
+                        </a>
+                        <div class="app-status">
+                            <span class="status-indicator online"></span>
+                            <span>Ready to help</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">build</span>
+                            Therapeutic Tools
+                        </h5>
+                        <nav class="resource-nav">
+                            <a href="/coping-strategies" class="resource-link active">
+                                <span class="material-icons">book</span>
+                                Coping Strategies
+                            </a>
+                            <a href="/breathing-exercises" class="resource-link">
+                                <span class="material-icons">favorite</span>
+                                Breathing Exercises
+                            </a>
+                            <a href="/mindfulness" class="resource-link">
+                                <span class="material-icons">psychology</span>
+                                Mindfulness Techniques
+                            </a>
+                            <a href="/crisis" class="resource-link">
+                                <span class="material-icons">phone</span>
+                                Crisis Helplines
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p>
+                            TheraScape is not a replacement for professional mental health treatment. 
+                            If you're experiencing a crisis, please contact a mental health professional or helpline.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Content Area -->
+            <main class="content-area">
+                <header class="content-header">
+                    <h1>
+                        <span class="material-icons">book</span>
+                        Coping Strategies
+                    </h1>
+                    <p>Evidence-based techniques to manage difficult emotions and situations</p>
+                </header>
+                
+                <div class="content-body">
+                    <section class="strategy-section">
+                        <h2>Cognitive Reframing</h2>
+                        <p class="strategy-description">Cognitive reframing is a technique used to shift your perspective and identify alternative ways of viewing situations, behaviors, and thoughts.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice Cognitive Reframing</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Identify the negative thought.</strong> Be specific about what you're thinking and feeling.</li>
+                                    <li><strong>Challenge the thought.</strong> Ask yourself: Is this thought based on facts or feelings? Is there evidence that contradicts this thought?</li>
+                                    <li><strong>Find alternative perspectives.</strong> What are other ways to view this situation? What would you tell a friend in the same situation?</li>
+                                    <li><strong>Create a balanced thought.</strong> Develop a new thought that incorporates a more balanced view of the situation.</li>
+                                    <li><strong>Practice regularly.</strong> Like any skill, cognitive reframing takes practice. Keep working at it, even if it feels difficult at first.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-example">
+                            <h4>Example:</h4>
+                            <div class="example-container">
+                                <div class="negative-thought">
+                                    <h5>
+                                        <span class="material-icons">cancel</span>
+                                        Negative Thought
+                                    </h5>
+                                    <p>"I made a mistake on that presentation. I'm terrible at my job and everyone thinks I'm incompetent."</p>
+                                </div>
+                                <div class="reframed-thought">
+                                    <h5>
+                                        <span class="material-icons">check_circle</span>
+                                        Reframed Thought
+                                    </h5>
+                                    <p>"I made a mistake during the presentation, which is something that happens to everyone. This one error doesn't define my overall performance. I can learn from this experience and improve for next time."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Grounding Techniques for Anxiety</h2>
+                        <p class="strategy-description">Grounding techniques help you stay in the present moment when you're feeling overwhelmed, anxious, or experiencing distressing thoughts.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>The 5-4-3-2-1 Exercise</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <p>This technique engages all five senses to help you focus on the present:</p>
+                                <ul>
+                                    <li><strong>5:</strong> Identify FIVE things you can see around you</li>
+                                    <li><strong>4:</strong> Identify FOUR things you can touch or feel</li>
+                                    <li><strong>3:</strong> Identify THREE things you can hear</li>
+                                    <li><strong>2:</strong> Identify TWO things you can smell</li>
+                                    <li><strong>1:</strong> Identify ONE thing you can taste</li>
+                                </ul>
+                                <p>Take your time with each step, focusing your attention on each sensation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>Physical Grounding</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ul>
+                                    <li>Hold a piece of ice in your hand</li>
+                                    <li>Splash cold water on your face</li>
+                                    <li>Dig your feet firmly into the ground</li>
+                                    <li>Focus on your breathing - slow and deep</li>
+                                    <li>Name objects around you categorized by color</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Emotional Regulation Strategies</h2>
+                        <p class="strategy-description">These techniques help you manage intense emotions when they arise, allowing you to respond rather than react.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>STOP Technique</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ul>
+                                    <li><strong>S</strong> - Stop what you're doing</li>
+                                    <li><strong>T</strong> - Take a step back</li>
+                                    <li><strong>O</strong> - Observe what's happening internally and externally</li>
+                                    <li><strong>P</strong> - Proceed mindfully with awareness</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>Self-Soothing With the Five Senses</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <p>Create a toolkit of soothing activities for each sense:</p>
+                                <ul>
+                                    <li><strong>Vision:</strong> Look at beautiful or calming images, watch the sunset, or observe nature</li>
+                                    <li><strong>Hearing:</strong> Listen to soothing music, nature sounds, or guided meditations</li>
+                                    <li><strong>Smell:</strong> Use essential oils, light a scented candle, or smell fresh flowers</li>
+                                    <li><strong>Taste:</strong> Savor a favorite food or drink, focus on the flavors and textures</li>
+                                    <li><strong>Touch:</strong> Take a warm bath, wrap in a soft blanket, or hold a stress ball</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Creating a Self-Care Plan</h2>
+                        <p class="strategy-description">Developing a personalized self-care routine can help maintain emotional balance and resilience during difficult times.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>Daily Self-Care Checklist</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <p>Try to incorporate at least one activity from each category daily:</p>
+                                <div class="self-care-grid">
+                                    <div class="self-care-category">
+                                        <h5>
+                                            <span class="material-icons">favorite</span>
+                                            Emotional
+                                        </h5>
+                                        <ul>
+                                            <li>Journal for 10 minutes</li>
+                                            <li>Talk to a supportive friend</li>
+                                            <li>Practice self-compassion</li>
+                                        </ul>
+                                    </div>
+                                    <div class="self-care-category">
+                                        <h5>
+                                            <span class="material-icons">psychology</span>
+                                            Mental
+                                        </h5>
+                                        <ul>
+                                            <li>Read something interesting</li>
+                                            <li>Learn something new</li>
+                                            <li>Take media breaks</li>
+                                        </ul>
+                                    </div>
+                                    <div class="self-care-category">
+                                        <h5>
+                                            <span class="material-icons">fitness_center</span>
+                                            Physical
+                                        </h5>
+                                        <ul>
+                                            <li>Take a walk</li>
+                                            <li>Stretch or do yoga</li>
+                                            <li>Get enough sleep</li>
+                                        </ul>
+                                    </div>
+                                    <div class="self-care-category">
+                                        <h5>
+                                            <span class="material-icons">spa</span>
+                                            Spiritual
+                                        </h5>
+                                        <ul>
+                                            <li>Meditate or pray</li>
+                                            <li>Spend time in nature</li>
+                                            <li>Practice gratitude</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="back-to-chat">
+                        <a href="/chat" class="btn-primary">
+                            <span class="material-icons">chat</span>
+                            Back to Chat
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html> 

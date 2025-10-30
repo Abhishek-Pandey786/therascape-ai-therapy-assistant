@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Helplines | TheraScape</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material UI CSS -->
+    <link href="https://unpkg.com/@material/web@1.0.0/material-web.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Shared Therapeutic Tools CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/therapeutic_tools.css') }}">
+    <!-- Crisis CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crisis.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+    
+    <div class="app-container">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <a href="/" class="home-link">
+                            <h3 class="app-title">TheraScape</h3>
+                            <p class="app-subtitle">Your AI Therapy Assistant</p>
+                        </a>
+                        <div class="app-status">
+                            <span class="status-indicator online"></span>
+                            <span>Ready to help</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">build</span>
+                            Therapeutic Tools
+                        </h5>
+                        <nav class="resource-nav">
+                            <a href="/coping-strategies" class="resource-link">
+                                <span class="material-icons">book</span>
+                                Coping Strategies
+                            </a>
+                            <a href="/breathing-exercises" class="resource-link">
+                                <span class="material-icons">favorite</span>
+                                Breathing Exercises
+                            </a>
+                            <a href="/mindfulness" class="resource-link">
+                                <span class="material-icons">psychology</span>
+                                Mindfulness Techniques
+                            </a>
+                            <a href="/crisis" class="resource-link active">
+                                <span class="material-icons">phone</span>
+                                Crisis Helplines
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p>
+                            TheraScape is not a replacement for professional mental health treatment. 
+                            If you're experiencing a crisis, please contact a mental health professional or helpline.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Content Area -->
+            <main class="content-area">
+                <header class="content-header">
+                    <h1>
+                        <span class="material-icons">phone</span>
+                        Crisis Helplines
+                    </h1>
+                    <p>Emergency contacts and resources for immediate support in India</p>
+                </header>
+                
+                <div class="content-body">
+                    <div class="crisis-intro">
+                        <div class="emergency-alert">
+                            <span class="material-icons">warning</span>
+                            <div>
+                                <h3>If you are in immediate danger or having thoughts of harming yourself or others</h3>
+                                <p>Call emergency services (112 in India) or go to your nearest emergency room.</p>
+                            </div>
+                        </div>
+                        
+                        <p>The following helplines and resources are available to provide support during a crisis. All services are confidential and many offer support via phone, text, or chat.</p>
+                    </div>
+                    
+                    <section class="helplines-section">
+                        <h2>National Crisis Helplines</h2>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>NIMHANS Mental Health Helpline</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:080-46110007">080-46110007</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="https://nimhans.ac.in" target="_blank">nimhans.ac.in</a></span>
+                                    </div>
+                                </div>
+                                <p>The National Institute of Mental Health and Neurosciences (NIMHANS) provides 24/7, free and confidential support for people in distress, prevention and crisis resources.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>iCall Helpline</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:022-25521111">022-25521111</a> / <a href="tel:+91-9152987821">+91-9152987821</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">email</span>
+                                        <span>Email: <a href="mailto:icall@tiss.edu">icall@tiss.edu</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="https://icallhelpline.org/" target="_blank">icallhelpline.org</a></span>
+                                    </div>
+                                </div>
+                                <p>iCall is a psychosocial helpline that offers counseling via telephone, email and chat to individuals in emotional distress. Available Monday to Saturday, 10:00 AM to 8:00 PM.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>Kiran Mental Health Helpline</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:1800-599-0019">1800-599-0019</a> (Toll-Free)</span>
+                                    </div>
+                                </div>
+                                <p>A 24/7 toll-free mental health rehabilitation helpline launched by the Social Justice and Empowerment Ministry, Government of India. It provides support in 13 languages.</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="helplines-section">
+                        <h2>Specialized Crisis Support</h2>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>Vandrevala Foundation</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:+91-9999666555">+91-9999666555</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">email</span>
+                                        <span>Email: <a href="mailto:help@vandrevalafoundation.com">help@vandrevalafoundation.com</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="https://www.vandrevalafoundation.com/" target="_blank">vandrevalafoundation.com</a></span>
+                                    </div>
+                                </div>
+                                <p>The Vandrevala Foundation provides 24/7 free counseling services and mental health resources to those who are in emotional distress and their family members.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>AASRA</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:+91-9820466726">+91-9820466726</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">email</span>
+                                        <span>Email: <a href="mailto:aasrahelpline@yahoo.com">aasrahelpline@yahoo.com</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="http://www.aasra.info/" target="_blank">aasra.info</a></span>
+                                    </div>
+                                </div>
+                                <p>AASRA is a crisis intervention center for the lonely, distressed, and suicidal. Available 24/7.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>Sneha India Foundation</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">phone</span>
+                                        <span>Call: <a href="tel:044-24640050">044-24640050</a> / <a href="tel:+91-9566067080">+91-9566067080</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">email</span>
+                                        <span>Email: <a href="mailto:help@snehaindia.org">help@snehaindia.org</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="https://www.snehaindia.org/" target="_blank">snehaindia.org</a></span>
+                                    </div>
+                                </div>
+                                <p>Sneha provides 24/7 crisis intervention and emotional support for people in distress. They offer support in multiple languages.</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="helplines-section">
+                        <h2>Additional Resources</h2>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>Emergency Services</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">emergency</span>
+                                        <span>Emergency: <a href="tel:112">112</a> (Pan-India)</span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">local_police</span>
+                                        <span>Police: <a href="tel:100">100</a></span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">local_hospital</span>
+                                        <span>Ambulance: <a href="tel:108">108</a></span>
+                                    </div>
+                                </div>
+                                <p>For immediate medical emergencies or if you are in danger, call these emergency numbers immediately.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-card">
+                            <div class="helpline-card-header">
+                                <h3>Online Crisis Resources</h3>
+                            </div>
+                            <div class="helpline-card-body">
+                                <div class="contact-info">
+                                    <div class="contact-method">
+                                        <span class="material-icons">chat</span>
+                                        <span>Crisis Text Line: Text HOME to 741741</span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="material-icons">language</span>
+                                        <span>Website: <a href="https://www.crisistextline.org/" target="_blank">crisistextline.org</a></span>
+                                    </div>
+                                </div>
+                                <p>International crisis text line available 24/7 for immediate support via text messaging.</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="safety-info">
+                        <h3>
+                            <span class="material-icons">security</span>
+                            Safety Information
+                        </h3>
+                        <ul>
+                            <li>If you're having thoughts of suicide, please reach out to one of the helplines above immediately.</li>
+                            <li>Remove any dangerous objects from your environment.</li>
+                            <li>Stay connected with trusted friends or family members.</li>
+                            <li>Consider going to your nearest emergency room if you're in immediate danger.</li>
+                            <li>Remember that these feelings are temporary and help is available.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="back-to-chat">
+                        <a href="/chat" class="btn-primary">
+                            <span class="material-icons">chat</span>
+                            Back to Chat
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html> 
+</html> 

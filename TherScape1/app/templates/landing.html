@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TheraScape</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Material UI CSS -->
+    <link href="https://unpkg.com/@material/web@1.0.0/material-web.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+
+    <div class="landing-container">
+        <div class="landing-card">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <h1 class="logo-title">TheraScape</h1>
+                <p class="logo-subtitle">Your AI Therapy Assistant</p>
+            </div>
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 class="welcome-title">Welcome to Your Safe Space</h2>
+                <p class="welcome-subtitle">
+                    Experience personalized mental health support in a serene, judgment-free environment designed to help you thrive.
+                </p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="auth-options">
+                    <h3 class="auth-title">Get Started with TheraScape</h3>
+                    <p class="auth-subtitle">Create an account or sign in to access your personalized therapy experience</p>
+                    
+                    <div class="auth-buttons">
+                        <a href="/auth" class="auth-btn primary-btn">
+                            <span class="material-icons">person_add</span>
+                            Create Account
+                        </a>
+                        <a href="/auth" class="auth-btn secondary-btn">
+                            <span class="material-icons">login</span>
+                            Sign In
+                        </a>
+                    </div>
+                    
+                    <div class="demo-option">
+                        <p class="demo-text">Want to try without signing up?</p>
+                        <button id="tryDemoBtn" class="demo-btn">
+                            <span class="material-icons">preview</span>
+                            Try Demo (Guest Mode)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔐</div>
+                        <div class="feature-text">Secure Authentication</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">�</div>
+                        <div class="feature-text">Mood Analytics</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">Therapeutic Goals</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">�</div>
+                        <div class="feature-text">Video Recommendations</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-text">AI-Powered Analysis</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">☁️</div>
+                        <div class="feature-text">Cloud Storage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Highlights -->
+            <div class="integration-section">
+                <h3 class="integration-title">Powered by Advanced Technology</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <span class="tech-icon">🔗</span>
+                        <span class="tech-name">Full-Stack Integration</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🗄️</span>
+                        <span class="tech-name">MongoDB Database</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔒</span>
+                        <span class="tech-name">JWT Authentication</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">☁️</span>
+                        <span class="tech-name">Spring Boot Backend</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Section -->
+            <div class="quick-access-section">
+                <div class="system-status">
+                    <div class="status-item">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">AI Assistant Online</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">Database Connected</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">Backend Services Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Landing Page JavaScript -->
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>

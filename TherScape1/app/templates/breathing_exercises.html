@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathing Exercises | TheraScape</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material UI CSS -->
+    <link href="https://unpkg.com/@material/web@1.0.0/material-web.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Shared Therapeutic Tools CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/therapeutic_tools.css') }}">
+    <!-- Breathing Exercises CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/breathing.css') }}">
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+    
+    <div class="app-container">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <a href="/" class="home-link">
+                            <h3 class="app-title">TheraScape</h3>
+                            <p class="app-subtitle">Your AI Therapy Assistant</p>
+                        </a>
+                        <div class="app-status">
+                            <span class="status-indicator online"></span>
+                            <span>Ready to help</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h5 class="section-title">
+                            <span class="material-icons">build</span>
+                            Therapeutic Tools
+                        </h5>
+                        <nav class="resource-nav">
+                            <a href="/coping-strategies" class="resource-link">
+                                <span class="material-icons">book</span>
+                                Coping Strategies
+                            </a>
+                            <a href="/breathing-exercises" class="resource-link active">
+                                <span class="material-icons">favorite</span>
+                                Breathing Exercises
+                            </a>
+                            <a href="/mindfulness" class="resource-link">
+                                <span class="material-icons">psychology</span>
+                                Mindfulness Techniques
+                            </a>
+                            <a href="/crisis" class="resource-link">
+                                <span class="material-icons">phone</span>
+                                Crisis Helplines
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p>
+                            TheraScape is not a replacement for professional mental health treatment. 
+                            If you're experiencing a crisis, please contact a mental health professional or helpline.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Content Area -->
+            <main class="content-area">
+                <header class="content-header">
+                    <h1>
+                        <span class="material-icons">favorite</span>
+                        Breathing Exercises
+                    </h1>
+                    <p>Guided breathing techniques to reduce stress, anxiety, and promote relaxation</p>
+                </header>
+                
+                <div class="content-body">
+                    <div class="breathing-intro">
+                        <p>Breathing exercises are powerful tools that can help calm your mind, reduce stress, and bring you back to the present moment. When practiced regularly, they can help manage anxiety, improve focus, and promote overall well-being.</p>
+                        <p>Try these different breathing techniques and find the ones that work best for you.</p>
+                    </div>
+                    
+                    <section class="strategy-section">
+                        <h2>4-7-8 Breathing</h2>
+                        <p class="strategy-description">This relaxing breath practice is often recommended to help with anxiety, stress, and even falling asleep. It acts as a natural tranquilizer for the nervous system.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice 4-7-8 Breathing</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Find a comfortable position</strong> sitting or lying down.</li>
+                                    <li><strong>Place the tip of your tongue</strong> against the ridge behind your upper front teeth and keep it there throughout the exercise.</li>
+                                    <li><strong>Exhale completely</strong> through your mouth, making a whoosh sound.</li>
+                                    <li><strong>Close your mouth and inhale</strong> quietly through your nose for a count of 4.</li>
+                                    <li><strong>Hold your breath</strong> for a count of 7.</li>
+                                    <li><strong>Exhale completely</strong> through your mouth, making a whoosh sound, for a count of 8.</li>
+                                    <li><strong>Repeat</strong> this cycle 3-4 times.</li>
+                                </ol>
+                                <div class="breathing-visual">
+                                    <div class="breathing-animation" id="animation478">
+                                        <div class="circle-container">
+                                            <div class="circle"></div>
+                                            <p class="breathing-instruction">Click to start</p>
+                                        </div>
+                                        <div class="breathing-controls">
+                                            <button class="btn-primary start-animation" data-target="animation478">
+                                                <span class="material-icons">play_arrow</span>
+                                                Start Exercise
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Box Breathing</h2>
+                        <p class="strategy-description">Also known as square breathing, this technique is used by everyone from athletes to Navy SEALs to help improve concentration and performance while decreasing stress.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice Box Breathing</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Sit upright</strong> in a comfortable position with your feet flat on the floor.</li>
+                                    <li><strong>Slowly exhale</strong> all of the air from your lungs.</li>
+                                    <li><strong>Inhale slowly</strong> through your nose to a count of 4, filling your lungs.</li>
+                                    <li><strong>Hold your breath</strong> for a count of 4.</li>
+                                    <li><strong>Exhale slowly</strong> through your mouth for a count of 4.</li>
+                                    <li><strong>Hold your breath</strong> (lungs empty) for a count of 4.</li>
+                                    <li><strong>Repeat</strong> for at least 5-10 minutes to experience the full benefits.</li>
+                                </ol>
+                                <div class="breathing-visual">
+                                    <div class="breathing-animation" id="animationBox">
+                                        <div class="box-container">
+                                            <div class="box"></div>
+                                            <p class="breathing-instruction">Click to start</p>
+                                        </div>
+                                        <div class="breathing-controls">
+                                            <button class="btn-primary start-animation" data-target="animationBox">
+                                                <span class="material-icons">play_arrow</span>
+                                                Start Exercise
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Diaphragmatic Breathing</h2>
+                        <p class="strategy-description">Also called belly breathing or deep breathing, this technique helps you use your diaphragm properly while breathing to strengthen it, decrease oxygen demand, and slow your breathing rate.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice Diaphragmatic Breathing</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Lie on your back</strong> with your knees slightly bent and your head on a pillow.</li>
+                                    <li><strong>Place one hand on your upper chest</strong> and the other on your belly, just below your rib cage.</li>
+                                    <li><strong>Breathe in slowly</strong> through your nose, feeling your stomach push against your hand. The hand on your chest should remain as still as possible.</li>
+                                    <li><strong>Tighten your stomach muscles</strong> and let them fall inward as you exhale through pursed lips. The hand on your chest should remain still.</li>
+                                    <li><strong>Repeat</strong> for 5-10 minutes, practicing 3-4 times per day.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Once you've mastered this technique lying down, you can practice it while sitting or standing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Alternate Nostril Breathing</h2>
+                        <p class="strategy-description">This yogic breathing technique (Nadi Shodhana) helps balance the two hemispheres of the brain, promoting mental clarity and alleviating stress.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice Alternate Nostril Breathing</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Sit comfortably</strong> with your back straight and shoulders relaxed.</li>
+                                    <li><strong>Place your left hand on your left knee</strong> with palm facing upward.</li>
+                                    <li><strong>Lift your right hand</strong> to your nose. Use your right thumb to close your right nostril and your right ring finger to close your left nostril.</li>
+                                    <li><strong>Close your right nostril</strong> with your thumb and inhale slowly through your left nostril.</li>
+                                    <li><strong>At the peak of your inhalation</strong>, close your left nostril with your ring finger, release your thumb from your right nostril, and exhale slowly through your right nostril.</li>
+                                    <li><strong>Inhale through your right nostril</strong>, then close it with your thumb, release your ring finger from your left nostril, and exhale through your left nostril.</li>
+                                    <li><strong>This completes one cycle</strong>. Continue for 5-10 cycles.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Keep your breathing smooth and even. If you feel dizzy or lightheaded at any point, return to normal breathing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="strategy-section">
+                        <h2>Breath Counting</h2>
+                        <p class="strategy-description">A simple mindfulness practice that helps calm the mind and improve concentration.</p>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-card-header">
+                                <h3>How to Practice Breath Counting</h3>
+                            </div>
+                            <div class="strategy-card-body">
+                                <ol>
+                                    <li><strong>Sit in a comfortable position</strong> with your back straight but not stiff.</li>
+                                    <li><strong>Close your eyes</strong> or maintain a soft gaze.</li>
+                                    <li><strong>Take a few deep breaths</strong>, then allow your breathing to return to its natural rhythm.</li>
+                                    <li><strong>Count each breath</strong> as you exhale, starting from 1.</li>
+                                    <li><strong>Continue counting</strong> up to 10, then start over from 1.</li>
+                                    <li><strong>If your mind wanders</strong>, gently bring your attention back to your breath and start counting from 1 again.</li>
+                                    <li><strong>Practice</strong> for 5-10 minutes daily.</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <h4>
+                                        <span class="material-icons">lightbulb</span>
+                                        Tip
+                                    </h4>
+                                    <p>Don't worry if you lose count or get distracted. Simply return to counting from 1. The goal is to focus on your breath, not to reach a specific number.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="back-to-chat">
+                        <a href="/chat" class="btn-primary">
+                            <span class="material-icons">chat</span>
+                            Back to Chat
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Custom JS for breathing animations -->
+    <script src="{{ url_for('static', filename='js/breathing.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,126 @@
+/* Shared Therapeutic Tools - Material UI Themed Styles */
+
+/* Content Area Styles */
+.content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface);
+    box-shadow: var(--elevation-1);
+    overflow-y: auto;
+}
+
+.content-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    color: var(--on-primary);
+    padding: 32px 24px;
+    box-shadow: var(--elevation-2);
+    position: relative;
+    z-index: 5;
+}
+
+.content-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--on-primary);
+}
+
+.content-header h1 .material-icons {
+    font-size: 36px;
+    color: var(--on-primary);
+}
+
+.content-header p {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.9;
+    color: var(--on-primary);
+    line-height: 1.5;
+}
+
+.content-body {
+    flex: 1;
+    padding: 32px 24px;
+    background-color: var(--surface);
+}
+
+/* Back to Chat Button */
+.back-to-chat {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.back-to-chat .btn {
+    padding: 12px 30px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border: none;
+    box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+    transition: all 0.3s;
+}
+
+.back-to-chat .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+}
+
+.back-to-chat .btn:active {
+    transform: translateY(0);
+}
+
+/* Home Link */
+.home-link {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.home-link:hover {
+    color: #fff;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-header {
+        padding: 24px 16px;
+    }
+    
+    .content-header h1 {
+        font-size: 24px;
+        gap: 12px;
+    }
+    
+    .content-header h1 .material-icons {
+        font-size: 28px;
+    }
+    
+    .content-header p {
+        font-size: 16px;
+    }
+    
+    .content-body {
+        padding: 24px 16px;
+    }
+}
+
+/* Animation for content */
+.content-header,
+.content-body {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+} 

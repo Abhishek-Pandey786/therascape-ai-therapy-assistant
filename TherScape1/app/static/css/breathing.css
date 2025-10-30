@@ -1,0 +1,333 @@
+/* Breathing Exercises - Material UI Themed Styles */
+
+/* Breathing intro section */
+.breathing-intro {
+    margin-bottom: 32px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--on-surface);
+    opacity: 0.8;
+}
+
+/* Tip boxes */
+.tip-box {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 24px;
+    box-shadow: var(--elevation-1);
+}
+
+.tip-box h4 {
+    color: #e65100;
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tip-box h4 .material-icons {
+    font-size: 20px;
+    color: #ff9800;
+}
+
+.tip-box p {
+    margin-bottom: 0;
+    color: #bf360c;
+    line-height: 1.6;
+}
+
+/* Breathing Animation Components */
+.breathing-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 0;
+    margin-top: 24px;
+}
+
+.breathing-animation {
+    text-align: center;
+    padding: 24px;
+    border-radius: var(--border-radius-large);
+    background-color: var(--surface);
+    box-shadow: var(--elevation-2);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #e0e0e0;
+}
+
+.breathing-instruction {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 20px 0;
+    color: var(--primary-color);
+    height: 30px;
+    transition: var(--transition);
+}
+
+.breathing-controls {
+    margin-top: 24px;
+}
+
+/* Circle Animation for 4-7-8 Breathing */
+.circle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    box-shadow: var(--elevation-3);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.circle:hover {
+    transform: scale(1.05);
+    box-shadow: var(--elevation-4);
+}
+
+/* Circle Animation States */
+.circle.inhale {
+    transform: scale(1.5);
+    animation: inhale 4s ease-in-out forwards;
+}
+
+.circle.hold {
+    transform: scale(1.5);
+    animation: hold 7s ease-in-out forwards;
+}
+
+.circle.exhale {
+    transform: scale(1);
+    animation: exhale 8s ease-in-out forwards;
+}
+
+@keyframes inhale {
+    0% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+    100% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+}
+
+@keyframes hold {
+    0% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+    100% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+}
+
+@keyframes exhale {
+    0% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+}
+
+/* Box Animation for Box Breathing */
+.box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    box-shadow: var(--elevation-3);
+    transition: var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: var(--elevation-4);
+}
+
+/* Box Animation States */
+.box.box-inhale {
+    animation: boxInhale 4s ease-in-out forwards;
+}
+
+.box.box-hold-full {
+    transform: scale(1.5);
+    animation: boxHoldFull 4s ease-in-out forwards;
+}
+
+.box.box-exhale {
+    animation: boxExhale 4s ease-in-out forwards;
+}
+
+.box.box-hold-empty {
+    transform: scale(1);
+    animation: boxHoldEmpty 4s ease-in-out forwards;
+}
+
+@keyframes boxInhale {
+    0% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+    100% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+}
+
+@keyframes boxHoldFull {
+    0% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+    100% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+}
+
+@keyframes boxExhale {
+    0% {
+        transform: scale(1.5);
+        box-shadow: var(--elevation-4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+}
+
+@keyframes boxHoldEmpty {
+    0% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: var(--elevation-3);
+    }
+}
+
+/* Button Styles */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-primary);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    box-shadow: var(--elevation-2);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+    text-decoration: none;
+    color: var(--on-primary);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary .material-icons {
+    font-size: 20px;
+}
+
+/* Animation States */
+.breathing-animation.playing .breathing-instruction {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.breathing-animation.playing .btn-primary {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-variant) 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .box {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .breathing-animation {
+        padding: 16px;
+        max-width: 300px;
+    }
+    
+    .breathing-instruction {
+        font-size: 16px;
+    }
+    
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .breathing-visual {
+        padding: 20px 0;
+    }
+}
+
+/* Animation for breathing exercises */
+.strategy-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for sections */
+.strategy-section:nth-child(1) { animation-delay: 0.1s; }
+.strategy-section:nth-child(2) { animation-delay: 0.2s; }
+.strategy-section:nth-child(3) { animation-delay: 0.3s; }
+.strategy-section:nth-child(4) { animation-delay: 0.4s; }
+.strategy-section:nth-child(5) { animation-delay: 0.5s; } 

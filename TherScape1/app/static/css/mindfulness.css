@@ -1,0 +1,256 @@
+/* Mindfulness Techniques - Material UI Themed Styles */
+
+/* Mindfulness Intro Styles */
+.mindfulness-intro {
+    margin-bottom: 32px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--on-surface);
+    opacity: 0.8;
+}
+
+/* Technique Section Styles */
+.technique-section {
+    margin-bottom: 48px;
+}
+
+.technique-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.technique-section h2::before {
+    content: '';
+    width: 4px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    border-radius: 2px;
+}
+
+.technique-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--on-surface);
+    margin-bottom: 24px;
+    opacity: 0.8;
+}
+
+/* Technique Card Styles */
+.technique-card {
+    background-color: var(--surface);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--elevation-2);
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid #e0e0e0;
+}
+
+.technique-card:hover {
+    box-shadow: var(--elevation-3);
+    transform: translateY(-2px);
+}
+
+.technique-card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    color: var(--on-primary);
+    padding: 20px 24px;
+}
+
+.technique-card-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--on-primary);
+}
+
+.technique-card-body {
+    padding: 24px;
+    color: var(--on-surface);
+}
+
+.technique-card-body p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.technique-card-body ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.technique-card-body li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.technique-card-body li:last-child {
+    margin-bottom: 0;
+}
+
+/* Tip Box Styles */
+.tip-box {
+    background-color: #e8f5e8;
+    border-left: 4px solid #4caf50;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 24px;
+    box-shadow: var(--elevation-1);
+}
+
+.tip-box h4 {
+    color: #2e7d32;
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tip-box h4 .material-icons {
+    font-size: 20px;
+    color: #4caf50;
+}
+
+.tip-box p {
+    margin-bottom: 0;
+    color: #1b5e20;
+    line-height: 1.6;
+}
+
+/* Button Styles */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-primary);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-variant) 100%);
+    border: none;
+    border-radius: var(--border-radius-large);
+    text-decoration: none;
+    box-shadow: var(--elevation-2);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--elevation-3);
+    text-decoration: none;
+    color: var(--on-primary);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary .material-icons {
+    font-size: 20px;
+}
+
+/* Back to Chat Button */
+.back-to-chat {
+    margin-top: 48px;
+    text-align: center;
+}
+
+/* Animation for technique cards */
+.technique-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for technique sections */
+.technique-section:nth-child(1) { animation-delay: 0.1s; }
+.technique-section:nth-child(2) { animation-delay: 0.2s; }
+.technique-section:nth-child(3) { animation-delay: 0.3s; }
+.technique-section:nth-child(4) { animation-delay: 0.4s; }
+.technique-section:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .technique-section h2 {
+        font-size: 24px;
+    }
+    
+    .technique-description {
+        font-size: 16px;
+    }
+    
+    .technique-card-header,
+    .technique-card-body {
+        padding: 16px;
+    }
+    
+    .tip-box {
+        padding: 16px;
+    }
+    
+    .tip-box h4 {
+        font-size: 16px;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .mindfulness-intro {
+        font-size: 16px;
+    }
+}
+
+/* Special styling for mindfulness content */
+.technique-card-body ol li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.technique-card-body ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.technique-card-body ul li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Mindfulness-specific color variations */
+.technique-section:nth-child(1) .technique-card-header {
+    background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+.technique-section:nth-child(2) .technique-card-header {
+    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+}
+
+.technique-section:nth-child(3) .technique-card-header {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.technique-section:nth-child(4) .technique-card-header {
+    background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+}
+
+.technique-section:nth-child(5) .technique-card-header {
+    background: linear-gradient(135deg, #607d8b 0%, #455a64 100%);
+} 

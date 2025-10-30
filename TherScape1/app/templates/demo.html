@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheraScape - Demo Mode</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    <style>
+        .demo-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .demo-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+        }
+        
+        .demo-header {
+            margin-bottom: 30px;
+        }
+        
+        .demo-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .demo-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .demo-form {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--on-surface);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+        
+        .gender-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .gender-option {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .gender-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .start-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .start-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+        }
+        
+        .start-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .demo-features {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-features h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .feature-list {
+            text-align: left;
+            color: #666;
+        }
+        
+        .feature-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .upgrade-prompt {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(102, 187, 106, 0.1));
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .upgrade-prompt p {
+            margin: 0 0 10px 0;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+        
+        .upgrade-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .upgrade-link:hover {
+            background: #1b5e20;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Forest Background -->
+    <div class="forest-background">
+        <div class="forest-layers">
+            <div class="forest-layer forest-layer-1"></div>
+            <div class="forest-layer forest-layer-2"></div>
+            <div class="forest-layer forest-layer-3"></div>
+        </div>
+        <div class="forest-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sunlight-rays"></div>
+    </div>
+
+    <div class="demo-container">
+        <div class="demo-card">
+            <div class="demo-header">
+                <h1>TheraScape</h1>
+                <div class="demo-badge">
+                    <span class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 5px;">visibility</span>
+                    Demo Mode
+                </div>
+                <p class="demo-description">
+                    Try our AI therapy assistant for free! Enter your name and start chatting to experience personalized mental health support.
+                </p>
+            </div>
+            
+            <div class="demo-features">
+                <h3>What you can try:</h3>
+                <ul class="feature-list">
+                    <li>Chat with our AI therapy assistant</li>
+                    <li>Get mood analysis and insights</li>
+                    <li>Access therapeutic exercises</li>
+                    <li>Experience crisis support features</li>
+                </ul>
+            </div>
+            
+            <form id="demoForm" class="demo-form">
+                <div class="form-group">
+                    <label for="demoName">Your Name</label>
+                    <input type="text" id="demoName" class="form-input" placeholder="Enter your first name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender (Optional)</label>
+                    <div class="gender-options">
+                        <div class="gender-option" onclick="selectGender('male')">
+                            <span class="material-icons" style="display: block; margin-bottom: 5px;">face</span>
+                            Male
+                        </div>
+                        <div class="gender-option" onclick="selectGender('female')">
+                            <span class="material-icons" style="display: block; margin-bottom: 5px;">face_3</span>
+                            Female
+                        </div>
+                        <div class="gender-option" onclick="selectGender('other')">
+                            <span class="material-icons" style="display: block; margin-bottom: 5px;">person</span>
+                            Other
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="start-button" id="startButton">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">chat</span>
+                    Start Chatting
+                </button>
+            </form>
+            
+            <div class="upgrade-prompt">
+                <p>Want the full experience with personalized dashboard and progress tracking?</p>
+                <a href="/auth/register" class="upgrade-link">Create Free Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedGender = null;
+        
+        function selectGender(gender) {
+            // Remove previous selection
+            document.querySelectorAll('.gender-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            event.target.closest('.gender-option').classList.add('selected');
+            selectedGender = gender;
+        }
+        
+        // Demo form handler
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('demoName').value.trim();
+            
+            if (!name) {
+                alert('Please enter your name to continue.');
+                return;
+            }
+            
+            // Store demo session data
+            const demoData = {
+                name: name,
+                gender: selectedGender || 'not-specified',
+                mode: 'demo',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send to backend to establish demo session
+            fetch('/api/start-demo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(demoData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to chat interface
+                    window.location.href = '/chat';
+                } else {
+                    alert('Failed to start demo. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error starting demo:', error);
+                alert('Failed to start demo. Please try again.');
+            });
+        });
+        
+        // Add some interactive feedback
+        document.getElementById('demoName').addEventListener('input', function() {
+            const button = document.getElementById('startButton');
+            if (this.value.trim()) {
+                button.disabled = false;
+            } else {
+                button.disabled = true;
+            }
+        });
+        
+        // Initially disable button
+        document.getElementById('startButton').disabled = true;
+    </script>
+</body>
+</html>
