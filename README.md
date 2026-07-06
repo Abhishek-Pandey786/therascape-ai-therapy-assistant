@@ -1,340 +1,198 @@
-# 🌿 TheraScape - AI-Powered Therapy Assistant
+# TheraScape: AI-Powered Therapy Assistant
 
-> **A comprehensive mental health platform combining AI therapy, mood analysis, and immersive experiences**
+![TheraScape Architecture](https://img.shields.io/badge/Architecture-Microservices-blue) ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-3.1.1-lightgrey?logo=flask) ![Java](https://img.shields.io/badge/Java-17-orange?logo=java) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5.3-brightgreen?logo=spring) ![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green?logo=mongodb) ![Gemini AI](https://img.shields.io/badge/AI-Google_Gemini-blue)
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.org)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-green.svg)](https://spring.io/projects/spring-boot)
-[![Flask](https://img.shields.io/badge/Flask-3.1.1-lightgrey.svg)](https://flask.palletsprojects.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+## Project Overview
 
-## 🌟 Overview
+TheraScape is a microservice-based AI therapy assistant designed to provide emotional support, mood tracking, and personalized therapeutic video recommendations. It serves individuals seeking on-demand mental health tools and crisis management strategies. The system leverages Google's Gemini LLM for dynamic, context-aware conversational therapy and a robust Java Spring Boot backend for secure data persistence, user management, and algorithmic video curation. The platform processes emotional signals in real-time to adjust therapeutic techniques, achieving a personalized mental health care experience.
 
-TheraScape is a next-generation mental health platform that combines artificial intelligence, evidence-based therapeutic techniques, and modern web technologies to provide accessible, personalized mental health support.
+## Architecture Diagram
 
-### 🎯 Key Features
-
-- **🤖 AI-Powered Conversations**: Advanced Gemini 2.5 Flash integration with therapeutic conversation patterns
-- **🧠 Mood Analysis & Tracking**: Real-time emotional state detection and visualization
-- **🎵 Therapeutic Resources**: Guided breathing exercises, mindfulness meditation, and coping strategies
-- **🔐 Enterprise Security**: JWT authentication, secure session management, and data protection
-- **🎨 Modern UI/UX**: Responsive design with accessibility features and voice interaction
-- **🔗 Microservices Architecture**: Scalable Python frontend with Java Spring Boot backend
-- **⚡ Crisis Intervention**: Built-in safety protocols and emergency resource recommendations
-
-## 🏗️ Architecture
-
-```
-TheraScape/
-├── 🐍 TherScape1/ (Python Flask Frontend)
-│   ├── AI Chat Interface
-│   ├── Mood Analysis Engine
-│   ├── Therapeutic Tools
-│   └── User Session Management
-├── ☕ therascape-backend/ (Java Spring Boot)
-│   ├── User Authentication
-│   ├── Data Persistence (MongoDB)
-│   ├── RESTful APIs
-│   └── Security & Validation
-└── 📚 Documentation & Deployment Scripts
+```mermaid
+graph TD
+    A[User / Web Browser] -->|HTTP / REST| B[Flask Frontend Gateway]
+    B -->|Generative AI API| C[Google Gemini LLM]
+    B -->|REST API & JWT| D[Java Spring Boot Backend]
+    D -->|Spring Data MongoDB| E[(MongoDB Database)]
+    
+    subgraph Frontend Services
+        B
+    end
+    
+    subgraph AI Layer
+        C
+    end
+    
+    subgraph Backend Services
+        D
+        F[Auth Service]
+        G[Mood Tracking Service]
+        H[Video Recommendation Service]
+        D --- F
+        D --- G
+        D --- H
+    end
 ```
 
-## 🚀 Quick Start
+## Key Features
+
+* **Context-Aware AI Chatbot** — Conversational agent powered by Google Gemini and LangChain that maintains session history to provide dynamic emotional support.
+* **Real-Time Mood Analysis** — Evaluates user inputs for emotional context, categorizing them into predefined mood states and extracting intensity scores to guide responses.
+* **Algorithmic Video Recommendations** — Curates therapeutic video content (e.g., mindfulness, breathing exercises) based on the user's current emotional state, historical preferences, and crisis risk.
+* **Secure User Authentication** — JWT-based authentication system managed by Spring Security, ensuring private conversations and secure storage of mood history.
+* **Crisis Management Protocols** — Automatically detects high-risk language (crisis risk) and routes users to appropriate safe content and emergency strategies.
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend Gateway** | Python 3, Flask 3.1.1, HTML/CSS/JS, Jinja2 |
+| **Backend Services** | Java 17, Spring Boot 3.5.3, Spring Security, JWT |
+| **Database** | MongoDB (Spring Data MongoDB) |
+| **AI / ML** | Google Generative AI (Gemini), LangChain |
+| **Build & Tooling** | Maven, dotenv, CORS |
+
+## Project Structure
+
+```text
+TherapyBot/
+├── TherScape1/                    # Python Flask Frontend Gateway
+│   ├── app/
+│   │   ├── models/                # LLM & Mood Analysis logic
+│   │   ├── services/              # API Clients for Java Backend
+│   │   ├── static/                # CSS, JS assets
+│   │   ├── templates/             # HTML Jinja2 templates
+│   │   └── routes.py              # Flask API Endpoints
+│   ├── config.py                  # Environment & Feature flags
+│   ├── run.py                     # Flask application entry point
+│   └── requirements.txt           # Python dependencies
+├── therascape-backend/            # Java Spring Boot Backend
+│   ├── src/main/java/tech/sumithmeena/therascapebackend/
+│   │   ├── controller/            # REST API Controllers (Auth, Mood, Video)
+│   │   ├── model/                 # MongoDB Document Entities
+│   │   ├── repository/            # Spring Data Repositories
+│   │   ├── security/              # JWT & Spring Security configs
+│   │   └── service/               # Business logic layer
+│   └── pom.xml                    # Maven configuration
+└── README.md                      # Global Documentation
+```
+
+## API Reference
+
+### Flask Gateway (Frontend -> User)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/chat` | Sends user message, triggers AI response & mood analysis | Yes/Demo |
+| POST | `/api/login` | Proxies login to Java backend, establishes Flask session | No |
+| POST | `/api/register` | Proxies registration to Java backend | No |
+| GET | `/api/scene-recommendations/<mood>` | Fetches recommended therapeutic scenes | No |
+| POST | `/api/mood-analysis` | Performs explicit mood analysis and returns intensity | No |
+| POST | `/clear_conversation` | Wipes current chat session state | Yes |
+
+### Java Backend (Flask -> Backend)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/auth/login` | Authenticates user and returns JWT | No |
+| POST | `/api/auth/register` | Creates a new user record | No |
+| POST | `/api/mood/analyze` | Stores new mood entry | Yes |
+| GET | `/api/enhanced-videos/personalized/{username}` | Fetches user-specific curated videos | Yes |
+| GET | `/api/enhanced-videos/quick-help/{moodCategory}`| Fetches immediate relief videos based on mood | No |
+| POST | `/api/enhanced-videos/interaction` | Logs user engagement with a specific video | Yes |
+
+## Database Schema (MongoDB)
+
+### `users` Collection
+| Column | Type | Attributes |
+|--------|------|------------|
+| `id` | String | `@Id` |
+| `username` | String | `@Indexed(unique = true)` |
+| `email` | String | `@Indexed(unique = true)` |
+| `password` | String | Hashed |
+| `active` | Boolean | Default: true |
+
+### `mood_entries` Collection
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | String | `@Id` |
+| `user` | DBRef | Reference to `users` collection |
+| `primaryMood` | String | Categorized mood (e.g., anxious, stressed) |
+| `intensity` | Integer | Scale of 1-10 |
+| `crisisRisk` | Boolean | Flags potential mental health crises |
+| `timestamp` | Date | Time of entry creation |
+
+### `enhanced_videos` Collection
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | String | `@Id` |
+| `videoUrl` | String | Source URL of the therapeutic video |
+| `primaryMoodCategory` | String | Target emotion (e.g., sad, angry) |
+| `therapyTechnique` | String | e.g., mindfulness, breathing_exercises |
+| `crisisSafe` | Boolean | Safe for users in high-distress states |
+
+## Environment Variables
+
+### Python Gateway (`TherScape1/.env`)
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `GOOGLE_API_KEY` | Gemini API token for AI generation | `AIzaSy...` |
+| `SECRET_KEY` | Flask session encryption key | `super-secret-key` |
+| `JAVA_BACKEND_URL` | Base URL for Spring Boot backend | `http://localhost:8080` |
+| `ENABLE_JAVA_BACKEND` | Feature flag to proxy to backend | `true` |
+
+### Java Backend (`therascape-backend/src/main/resources/application.properties` or `.env`)
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `SPRING_DATA_MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017/therascape` |
+| `JWT_SECRET` | Secret key for token generation | `base64-encoded-secret` |
+
+## Getting Started
 
 ### Prerequisites
-
-- **Python 3.8+** with pip
-- **Java 17** with Maven
-- **MongoDB** (local or cloud)
-- **Google Gemini API Key**
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/sumith300/therascape.git
-cd therascape
-```
-
-### 2. Setup Python Frontend
-
-```bash
-cd TherScape1
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# macOS/Linux
-source venv/bin/activate
-
-pip install -r requirements.txt
-```
-
-### 3. Configure Environment
-
-```bash
-# Create .env file in TherScape1/
-cp .env.example .env
-
-# Add your API keys
-GOOGLE_API_KEY=your_gemini_api_key_here
-SECRET_KEY=your_secret_key_here
-JAVA_BACKEND_URL=http://localhost:8080
-```
-
-### 4. Setup Java Backend
-
-```bash
-cd therascape-backend
-
-# Configure MongoDB connection in src/main/resources/application.properties
-spring.data.mongodb.uri=mongodb://localhost:27017/therascape
-
-# Run the application
-./mvnw spring-boot:run
-```
-
-### 5. Start the Frontend
-
-```bash
-cd TherScape1
-python run.py
-```
-
-### 6. Access the Application
-
-- **Frontend**: http://localhost:5000
-- **Backend API**: http://localhost:8080
-- **API Documentation**: http://localhost:8080/swagger-ui.html
-
-## 🔧 Development Setup
-
-### Python Development Environment
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-python -m pytest tests/
-
-# Code formatting
-black app/
-flake8 app/
-
-# Type checking
-mypy app/
-```
-
-### Java Development Environment
-
-```bash
-# Run tests
-./mvnw test
-
-# Code formatting
-./mvnw spring-javaformat:apply
-
-# Build package
-./mvnw clean package
-```
-
-## 📊 Technology Stack
-
-### Frontend (Python)
-
-- **Framework**: Flask 3.1.1
-- **AI Integration**: Google Gemini 2.5 Flash via LangChain
-- **UI**: HTML5, CSS3, JavaScript (Vanilla)
-- **Speech**: Web Speech API
-- **Charts**: Chart.js for mood visualization
-
-### Backend (Java)
-
-- **Framework**: Spring Boot 3.5.3
-- **Security**: Spring Security with JWT
-- **Database**: MongoDB with Spring Data
-- **Validation**: Hibernate Validator
-- **Build Tool**: Maven
-
-### Infrastructure
-
-- **Authentication**: JWT tokens
-- **Session Management**: Flask sessions + MongoDB persistence
-- **API Communication**: RESTful APIs with JSON
-- **Deployment**: Docker-ready configuration
-
-## 🎨 UI/UX Features
-
-### 🌸 Therapeutic Design
-
-- **Forest Theme**: Calming green color palette inspired by nature therapy
-- **Accessibility**: WCAG 2.1 AA compliant design
-- **Responsive**: Mobile-first approach with progressive enhancement
-- **Voice Integration**: Hands-free interaction for accessibility
-
-### 🧭 User Journey
-
-1. **Landing Page**: Welcome with demo option
-2. **Authentication**: Secure registration/login
-3. **Chat Interface**: AI therapy conversations
-4. **Mood Tracking**: Visual progress monitoring
-5. **Therapeutic Tools**: Guided exercises and resources
-
-## 🔐 Security & Privacy
-
-### Data Protection
-
-- **Encryption**: All sensitive data encrypted at rest and in transit
-- **Session Security**: Secure session management with automatic expiration
-- **Input Validation**: Comprehensive server-side validation
-- **Crisis Detection**: Built-in safety protocols for mental health emergencies
-
-### Compliance
-
-- **HIPAA Ready**: Architecture designed for healthcare data compliance
-- **GDPR Compliant**: User data control and deletion capabilities
-- **Security Headers**: Comprehensive HTTP security headers
-- **Rate Limiting**: API protection against abuse
-
-## 📈 Performance
-
-### Optimizations
-
-- **Caching**: Intelligent caching for mood analysis and responses
-- **Lazy Loading**: Progressive content loading for better UX
-- **Connection Pooling**: Efficient database connections
-- **Model Selection**: Smart AI model selection based on availability
-
-### Monitoring
-
-- **Health Checks**: Built-in health monitoring endpoints
-- **Logging**: Structured logging for debugging and analytics
-- **Metrics**: Performance metrics collection
-- **Error Tracking**: Comprehensive error reporting
-
-## 🧪 Testing
-
-### Test Coverage
-
-```bash
-# Python tests
-pytest tests/ --cov=app --cov-report=html
-
-# Java tests
-./mvnw test jacoco:report
-```
-
-### Test Types
-
-- **Unit Tests**: Individual component testing
-- **Integration Tests**: API and database integration
-- **E2E Tests**: Full user journey testing
-- **Security Tests**: Authentication and authorization testing
-
-## 📚 API Documentation
-
-### Core Endpoints
-
-#### Authentication
-
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User authentication
-- `GET /api/auth/me` - Get current user
-
-#### Mood Analysis
-
-- `POST /api/mood-analysis` - Comprehensive mood analysis
-- `GET /api/mood-categories` - Available mood categories
-- `POST /api/crisis-assessment` - Crisis risk evaluation
-
-#### Chat & Therapy
-
-- `POST /api/chat` - AI therapy conversation
-- `GET /api/videos/recommendations` - Therapeutic video suggestions
-- `POST /api/session/save` - Save therapy session
-
-For complete API documentation, visit the [API Documentation](Backend_Integration_API_Documentation.md).
-
-## 🚀 Deployment
-
-### Docker Deployment
-
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Production deployment
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-### Cloud Deployment
-
-- **Frontend**: Heroku, Vercel, or AWS Elastic Beanstalk
-- **Backend**: AWS EC2, Google Cloud Run, or Azure Container Instances
-- **Database**: MongoDB Atlas, AWS DocumentDB, or Azure Cosmos DB
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Google Gemini API** for advanced AI capabilities
-- **Spring Boot Team** for the excellent framework
-- **Flask Community** for the lightweight web framework
-- **Mental Health Professionals** who provided therapeutic guidance
-- **Open Source Community** for the amazing tools and libraries
-
-## 📞 Support
-
-- **Documentation**: [Full Documentation](docs/)
-- **Issues**: [GitHub Issues](https://github.com/sumith300/therascape/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sumith300/therascape/discussions)
-- **Email**: support@therascape.com
-
-## 🎯 Future Roadmap
-
-### Phase 1 (Current)
-
-- ✅ AI Therapy Chat Interface
-- ✅ Mood Analysis & Tracking
-- ✅ User Authentication
-- ✅ Therapeutic Resources
-
-### Phase 2 (Next 3 months)
-
-- 🔄 Unity AR/VR Integration
-- 🔄 Mobile Application
-- 🔄 Advanced Analytics Dashboard
-- 🔄 Multi-language Support
-
-### Phase 3 (6+ months)
-
-- 📋 Healthcare Provider Integration
-- 📋 Clinical Trial Support
-- 📋 Wearable Device Integration
-- 📋 Advanced AI Personalization
-
----
-
-<div align="center">
-  
-**Built with ❤️ for Mental Health**
-
-_TheraScape is designed to supplement, not replace, professional mental health care. Always consult with qualified healthcare providers for serious mental health concerns._
-
-</div>
+- Python 3.11+
+- Java 17
+- Maven
+- MongoDB (running locally on port 27017)
+
+### Installation & Running Locally
+
+1. **Start MongoDB**
+   Ensure your local MongoDB instance is running.
+
+2. **Run Java Backend**
+   ```bash
+   cd therascape-backend
+   ./mvnw spring-boot:run
+   ```
+   *The backend will start on `http://localhost:8080`.*
+
+3. **Run Python Gateway**
+   ```bash
+   cd TherScape1
+   python -m venv venv
+   source venv/bin/activate  # Or `venv\Scripts\activate` on Windows
+   pip install -r requirements.txt
+   
+   # Set up your .env file
+   cp .env.example .env
+   # Add your GOOGLE_API_KEY to .env
+   
+   python run.py
+   ```
+   *The frontend will start on `http://localhost:5000`.*
+
+## Known Limitations
+
+- Real-time interaction latency is dependent on the external Gemini API response times.
+- The `mood_scene_mapper` currently relies on predefined heuristic rules and static embeddings rather than a dynamically trained sequence classification model.
+- No rate limiting is currently implemented on the Flask public endpoints.
+- MongoDB deployment assumes a local instance and lacks a formal migration or seeding script for the `enhanced_videos` collection in fresh environments.
+
+## Future Improvements
+
+- Implement Redis caching for frequently accessed video recommendations to reduce backend load.
+- Deploy services using Docker Compose for unified environment orchestration.
+- Add comprehensive pytest coverage for Flask routes and JUnit/Mockito tests for Spring Boot services.
+- Transition mood classification to a fine-tuned HuggingFace transformer model for more nuanced emotional context extraction.
+
+## Author
+[Abhishek Pandey](https://github.com/Abhishek-Pandey786)
